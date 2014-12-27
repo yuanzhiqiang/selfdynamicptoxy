@@ -10,6 +10,7 @@ import java.lang.reflect.Method;
 public class MyClassloader extends ClassLoader {
 
 	public MyClassloader() {
+		//默认指定了父类加载器为系统类加载器，这是当前类加载器能访问其他加载器的命名空间的基础
 		super();
 	}
 
@@ -60,6 +61,7 @@ public class MyClassloader extends ClassLoader {
 		
 		Class classs1 = myClassloader1.loadByte(baos.toByteArray());
 		System.out.println(classs1.getClassLoader().getClass().getName());
+		System.out.println(myClassloader1.getParent());
 		Method method = classs1.getMethod("hello", null);
 		method.invoke(classs1.newInstance(), null);
 		
